@@ -1,0 +1,107 @@
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+$grid-gutter-width: 30px;
+
+$container-large-desktop: 720px + $grid-gutter-width;
+$container-desktop: 720px + $grid-gutter-width;
+$container-tablet: 720px + $grid-gutter-width;
+
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss';
+@import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
+@mixin valid-input {
+  color: $state-success-text;
+  background-color: $state-success-bg;
+  border-color: $state-success-border;
+  &[readonly] {
+    color: $state-success-text;
+    background-color: $state-success-bg;
+    border-color: $state-success-border;
+  }
+}
+
+@mixin invalid-input {
+  color: $state-danger-text;
+  background-color: $state-danger-bg;
+  border-color: $state-danger-border;
+}
+
+.layout-container {
+  @extend .container;
+}
+
+.layout-header {
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.3em;
+  margin-bottom: 0.8em;
+}
+
+.layout-footer {
+  text-align: center;
+  margin-top: 2em;
+  border-top: 1px solid #eee;
+  padding-top: 1em;
+}
+
+.card-word,
+.card-form {
+  @extend .col-sm-6;
+  @extend .h3;
+
+  line-height: 2.5em;
+  text-align: center;
+}
+
+.card-row,
+.settings-row {
+  @extend .row;
+}
+
+.card-input {
+  @extend .col-sm-6;
+  @extend .col-sm-offset-3;
+
+  input {
+    @extend .form-control;
+    @extend .input-lg;
+    &.valid {
+      @include valid-input;
+    }
+
+    &.invalid {
+      @include invalid-input;
+    }
+  }
+}
+
+.card-answer {
+  @extend .col-sm-6;
+  @extend .col-sm-offset-3;
+  padding-top: 0.6em;
+
+  input {
+    @extend .form-control;
+    @extend .input-lg;
+
+    @include valid-input;
+  }
+}
+
+.settings-item {
+  @extend .form-group;
+  @extend .col-sm-6;
+}
+
+.timer {
+  text-align: center;
+}
+
+.start-button {
+  text-align: center;
+
+  button {
+    @extend .btn;
+    @extend .btn-primary;
+    @extend .btn-lg;
+  }
+}
