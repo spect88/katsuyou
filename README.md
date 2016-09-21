@@ -1,9 +1,11 @@
 ## katsuyou
 
 Katsuyou is a simple flashcard-like app for practicing conjugation of Japanese
-verbs.
+verbs. [Check it out here](https://spect88.github.io/katsuyou/).
 
-It's written in Elm, because it sounded like a fun sideproject. ;)
+
+It's written in [Elm](http://elm-lang.org/), because it sounded like a fun
+sideproject. ;)
 
 ### Development
 
