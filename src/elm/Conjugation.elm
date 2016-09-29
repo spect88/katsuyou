@@ -2,36 +2,70 @@ module Conjugation exposing
   ( Form(..)
   , exampleForm
   , randomForm
+  , formDescription
   , conjugate
   )
 
 import String
 import Random
+import Util
 import Word exposing (Word, KanjiOrKana(..), Kind(..))
 
 type Form
-  = Present
+  = Basic
   | Past
   | Te
   | Masu
   | Negative
+  | NegativePast
+  | Potential
+  | Passive
+  | Imperative
+  | Volitional
+  | Conditional
+  | Causative
+  | CausativePassive
+
+allForms : List Form
+allForms =
+  [ Basic
+  , Past
+  , Te
+  , Masu
+  , Negative
+  , NegativePast
+  , Potential
+  , Passive
+  , Imperative
+  , Volitional
+  , Conditional
+  , Causative
+  , CausativePassive
+  ]
+
+formDescription : Form -> String
+formDescription form =
+  case form of
+    Basic -> "basic (dictionary)"
+    Past -> "past"
+    Te -> "te"
+    Masu -> "polite (masu)"
+    Negative -> "negative"
+    NegativePast -> "past negative"
+    Potential -> "potential (can, be able to)"
+    Passive -> "passive"
+    Imperative -> "imperative"
+    Volitional -> "volitional (let's)"
+    Conditional -> "conditional (if)"
+    Causative -> "causative (make someone do)"
+    CausativePassive -> "causative passive (be forced to)"
 
 exampleForm : Form
 exampleForm = Negative
 
 randomForm : Random.Generator Form
 randomForm =
-  let
-    pickForm i =
-      case i of
-        1 -> Present
-        2 -> Past
-        3 -> Te
-        4 -> Masu
-        5 -> Negative
-        _ -> exampleForm -- this should never happen ;)
-  in
-    Random.map pickForm (Random.int 1 5)
+  Util.sample allForms
 
 conjugate : Form -> Word -> Result String Word
 conjugate form word =
@@ -41,35 +75,67 @@ conjugate form word =
       case word.kind of
         GodanVerbEndingWithKu ->
           case form of
-            Present -> Ok
+            Basic -> Ok
             Past -> replaceLastCharacterWith "いた"
             Te -> replaceLastCharacterWith "いて"
             Masu -> replaceLastCharacterWith "きます"
             Negative -> replaceLastCharacterWith "かない"
+            NegativePast -> replaceLastCharacterWith "かなかった"
+            Potential -> replaceLastCharacterWith "ける"
+            Passive -> replaceLastCharacterWith "かれる"
+            Imperative -> replaceLastCharacterWith "け"
+            Volitional -> replaceLastCharacterWith "こう"
+            Conditional -> replaceLastCharacterWith "けば"
+            Causative -> replaceLastCharacterWith "かせる"
+            CausativePassive -> replaceLastCharacterWith "かされる"
 
         GodanVerbEndingWithMu ->
           case form of
-            Present -> Ok
+            Basic -> Ok
             Past -> replaceLastCharacterWith "んだ"
             Te -> replaceLastCharacterWith "んで"
             Masu -> replaceLastCharacterWith "みます"
             Negative -> replaceLastCharacterWith "まない"
+            NegativePast -> replaceLastCharacterWith "まなかった"
+            Potential -> replaceLastCharacterWith "める"
+            Passive -> replaceLastCharacterWith "まれる"
+            Imperative -> replaceLastCharacterWith "め"
+            Volitional -> replaceLastCharacterWith "もう"
+            Conditional -> replaceLastCharacterWith "めば"
+            Causative -> replaceLastCharacterWith "ませる"
+            CausativePassive -> replaceLastCharacterWith "まされる"
 
         GodanVerbEndingWithRu ->
           case form of
-            Present -> Ok
+            Basic -> Ok
             Past -> replaceLastCharacterWith "った"
             Te -> replaceLastCharacterWith "って"
             Masu -> replaceLastCharacterWith "ります"
             Negative -> replaceLastCharacterWith "らない"
+            NegativePast -> replaceLastCharacterWith "らなかった"
+            Potential -> replaceLastCharacterWith "れる"
+            Passive -> replaceLastCharacterWith "られる"
+            Imperative -> replaceLastCharacterWith "れ"
+            Volitional -> replaceLastCharacterWith "ろう"
+            Conditional -> replaceLastCharacterWith "れば"
+            Causative -> replaceLastCharacterWith "らせる"
+            CausativePassive -> replaceLastCharacterWith "らされる"
 
         IchidanVerb ->
           case form of
-            Present -> Ok
+            Basic -> Ok
             Past -> replaceLastCharacterWith "た"
             Te -> replaceLastCharacterWith "て"
             Masu -> replaceLastCharacterWith "ます"
             Negative -> replaceLastCharacterWith "ない"
+            NegativePast -> replaceLastCharacterWith "なかった"
+            Potential -> replaceLastCharacterWith "られる"
+            Passive -> replaceLastCharacterWith "られる"
+            Imperative -> replaceLastCharacterWith "ろ"
+            Volitional -> replaceLastCharacterWith "よう"
+            Conditional -> replaceLastCharacterWith "れば"
+            Causative -> replaceLastCharacterWith "させる"
+            CausativePassive -> replaceLastCharacterWith "させられる"
 
         Conjugated ->
           \_ -> Err "Trying to conjugate an already conjugated word"

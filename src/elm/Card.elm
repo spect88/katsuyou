@@ -18,7 +18,7 @@ import Html.Events exposing (onInput, onSubmit)
 import Settings exposing (Settings, OutputFormat(..), InputFormat(..))
 import Word exposing (Word, exampleWord, toKanji, toKana, toRuby, toRomaji)
 import Vocabulary exposing (randomWord)
-import Conjugation exposing (Form, exampleForm, randomForm, conjugate)
+import Conjugation exposing (Form, exampleForm, formDescription, randomForm, conjugate)
 import Timer
 
 -- MODEL
@@ -164,7 +164,7 @@ wordToHtml outputFormat word =
 
 formToHtml : Form -> Html Msg
 formToHtml form =
-  text <| toString form
+  text <| formDescription form
 
 viewInput : Settings -> Card -> Html Msg
 viewInput settings card =

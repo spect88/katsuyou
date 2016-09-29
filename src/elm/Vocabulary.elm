@@ -4,6 +4,7 @@ module Vocabulary exposing
   )
 
 import Random
+import Util
 import Word exposing (Word, Kind(..), KanjiOrKana(..), exampleWord)
 
 -- HELPER
@@ -24,10 +25,4 @@ words =
 
 randomWord : Random.Generator Word
 randomWord =
-  let
-    pickWord i =
-      case words |> List.drop i |> List.head of
-        Just word -> word
-        Nothing -> Word.exampleWord -- this should never happen ;)
-  in
-    Random.map pickWord <| Random.int 0 (List.length words - 1)
+  Util.sample words
