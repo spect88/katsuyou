@@ -22,10 +22,19 @@ type KanjiOrKana
   | Kanji String Furigana
 
 type Kind
-  = GodanVerbEndingWithKu
+  = GodanVerbEndingWithSu
+  | GodanVerbEndingWithKu
+  | GodanVerbEndingWithGu
   | GodanVerbEndingWithMu
+  | GodanVerbEndingWithBu
+  | GodanVerbEndingWithNu
   | GodanVerbEndingWithRu
+  | GodanVerbEndingWithU
+  | GodanVerbEndingWithTsu
+  | GodanVerbIkuYukuClass
   | IchidanVerb
+  | SahenVerb
+  | KahenVerb
   | Conjugated
 
 type alias Word =

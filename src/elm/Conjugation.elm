@@ -73,6 +73,22 @@ conjugate form word =
     applyRules : (List KanjiOrKana -> Result String (List KanjiOrKana))
     applyRules =
       case word.kind of
+        GodanVerbEndingWithSu ->
+          case form of
+            Basic -> Ok
+            Past -> replaceLastCharacterWith "した"
+            Te -> replaceLastCharacterWith "して"
+            Masu -> replaceLastCharacterWith "します"
+            Negative -> replaceLastCharacterWith "さない"
+            NegativePast -> replaceLastCharacterWith "さなかった"
+            Potential -> replaceLastCharacterWith "せる"
+            Passive -> replaceLastCharacterWith "される"
+            Imperative -> replaceLastCharacterWith "せ"
+            Volitional -> replaceLastCharacterWith "そう"
+            Conditional -> replaceLastCharacterWith "せば"
+            Causative -> replaceLastCharacterWith "させる"
+            CausativePassive -> replaceLastCharacterWith "させられる"
+
         GodanVerbEndingWithKu ->
           case form of
             Basic -> Ok
@@ -88,6 +104,22 @@ conjugate form word =
             Conditional -> replaceLastCharacterWith "けば"
             Causative -> replaceLastCharacterWith "かせる"
             CausativePassive -> replaceLastCharacterWith "かされる"
+
+        GodanVerbEndingWithGu ->
+          case form of
+            Basic -> Ok
+            Past -> replaceLastCharacterWith "いだ"
+            Te -> replaceLastCharacterWith "いで"
+            Masu -> replaceLastCharacterWith "ぎます"
+            Negative -> replaceLastCharacterWith "がない"
+            NegativePast -> replaceLastCharacterWith "がなかった"
+            Potential -> replaceLastCharacterWith "げる"
+            Passive -> replaceLastCharacterWith "がれる"
+            Imperative -> replaceLastCharacterWith "げ"
+            Volitional -> replaceLastCharacterWith "ごう"
+            Conditional -> replaceLastCharacterWith "げば"
+            Causative -> replaceLastCharacterWith "がせる"
+            CausativePassive -> replaceLastCharacterWith "がされる"
 
         GodanVerbEndingWithMu ->
           case form of
@@ -105,6 +137,22 @@ conjugate form word =
             Causative -> replaceLastCharacterWith "ませる"
             CausativePassive -> replaceLastCharacterWith "まされる"
 
+        GodanVerbEndingWithBu ->
+          case form of
+            Basic -> Ok
+            Past -> replaceLastCharacterWith "んだ"
+            Te -> replaceLastCharacterWith "んで"
+            Masu -> replaceLastCharacterWith "びます"
+            Negative -> replaceLastCharacterWith "ばない"
+            NegativePast -> replaceLastCharacterWith "ばなかった"
+            Potential -> replaceLastCharacterWith "べる"
+            Passive -> replaceLastCharacterWith "ばれる"
+            Imperative -> replaceLastCharacterWith "べ"
+            Volitional -> replaceLastCharacterWith "ぼう"
+            Conditional -> replaceLastCharacterWith "べば"
+            Causative -> replaceLastCharacterWith "ばせる"
+            CausativePassive -> replaceLastCharacterWith "ばされる"
+
         GodanVerbEndingWithRu ->
           case form of
             Basic -> Ok
@@ -120,6 +168,70 @@ conjugate form word =
             Conditional -> replaceLastCharacterWith "れば"
             Causative -> replaceLastCharacterWith "らせる"
             CausativePassive -> replaceLastCharacterWith "らされる"
+
+        GodanVerbEndingWithU ->
+          case form of
+            Basic -> Ok
+            Past -> replaceLastCharacterWith "った"
+            Te -> replaceLastCharacterWith "って"
+            Masu -> replaceLastCharacterWith "います"
+            Negative -> replaceLastCharacterWith "わない"
+            NegativePast -> replaceLastCharacterWith "わなかった"
+            Potential -> replaceLastCharacterWith "える"
+            Passive -> replaceLastCharacterWith "われる"
+            Imperative -> replaceLastCharacterWith "え"
+            Volitional -> replaceLastCharacterWith "おう"
+            Conditional -> replaceLastCharacterWith "えば"
+            Causative -> replaceLastCharacterWith "わせる"
+            CausativePassive -> replaceLastCharacterWith "わされる"
+
+        GodanVerbEndingWithTsu ->
+          case form of
+            Basic -> Ok
+            Past -> replaceLastCharacterWith "った"
+            Te -> replaceLastCharacterWith "って"
+            Masu -> replaceLastCharacterWith "ちます"
+            Negative -> replaceLastCharacterWith "たない"
+            NegativePast -> replaceLastCharacterWith "たなかった"
+            Potential -> replaceLastCharacterWith "てる"
+            Passive -> replaceLastCharacterWith "たれる"
+            Imperative -> replaceLastCharacterWith "て"
+            Volitional -> replaceLastCharacterWith "とう"
+            Conditional -> replaceLastCharacterWith "てば"
+            Causative -> replaceLastCharacterWith "たせる"
+            CausativePassive -> replaceLastCharacterWith "たされる"
+
+        GodanVerbEndingWithNu ->
+          case form of
+            Basic -> Ok
+            Past -> replaceLastCharacterWith "んだ"
+            Te -> replaceLastCharacterWith "んで"
+            Masu -> replaceLastCharacterWith "にます"
+            Negative -> replaceLastCharacterWith "なない"
+            NegativePast -> replaceLastCharacterWith "ななかった"
+            Potential -> replaceLastCharacterWith "ねる"
+            Passive -> replaceLastCharacterWith "なれる"
+            Imperative -> replaceLastCharacterWith "ね"
+            Volitional -> replaceLastCharacterWith "のう"
+            Conditional -> replaceLastCharacterWith "ねば"
+            Causative -> replaceLastCharacterWith "なせる"
+            CausativePassive -> replaceLastCharacterWith "なされる"
+
+        GodanVerbIkuYukuClass ->
+          case form of
+            Basic -> Ok
+            Past -> replaceLastCharacterWith "った"
+            Te -> replaceLastCharacterWith "って"
+            Masu -> replaceLastCharacterWith "きます"
+            Negative -> replaceLastCharacterWith "かない"
+            NegativePast -> replaceLastCharacterWith "かなかった"
+            Potential -> replaceLastCharacterWith "ける"
+            Passive -> replaceLastCharacterWith "かれる"
+            Imperative -> replaceLastCharacterWith "け"
+            Volitional -> replaceLastCharacterWith "こう"
+            Conditional -> replaceLastCharacterWith "けば"
+            Causative -> replaceLastCharacterWith "かせる"
+            CausativePassive -> replaceLastCharacterWith "かされる"
 
         IchidanVerb ->
           case form of
@@ -137,6 +249,38 @@ conjugate form word =
             Causative -> replaceLastCharacterWith "させる"
             CausativePassive -> replaceLastCharacterWith "させられる"
 
+        SahenVerb ->
+          case form of
+            Basic -> Ok
+            Past -> replaceSuruWith "した"
+            Te -> replaceSuruWith "して"
+            Masu -> replaceSuruWith "します"
+            Negative -> replaceSuruWith "しない"
+            NegativePast -> replaceSuruWith "しなかった"
+            Potential -> replaceSuruWith "できる"
+            Passive -> replaceSuruWith "される"
+            Imperative -> replaceSuruWith "しろ"
+            Volitional -> replaceSuruWith "しよう"
+            Conditional -> replaceSuruWith "しれば"
+            Causative -> replaceSuruWith "させる"
+            CausativePassive -> replaceSuruWith "させられる"
+
+        KahenVerb ->
+          case form of
+            Basic -> Ok
+            Past -> replaceKuruWith "き" "た"
+            Te -> replaceKuruWith "き" "て"
+            Masu -> replaceKuruWith "き" "ます"
+            Negative -> replaceKuruWith "こ" "ない"
+            NegativePast -> replaceKuruWith "こ" "なかった"
+            Potential -> replaceKuruWith "こ" "られる"
+            Passive -> replaceKuruWith "こ" "られる"
+            Imperative -> replaceKuruWith "こ" "い"
+            Volitional -> replaceKuruWith "こ" "よう"
+            Conditional -> replaceKuruWith "く" "れば"
+            Causative -> replaceKuruWith "こ" "させる"
+            CausativePassive -> replaceKuruWith "こ" "させられる"
+
         Conjugated ->
           \_ -> Err "Trying to conjugate an already conjugated word"
   in
@@ -149,6 +293,25 @@ replaceLastCharacterWith newStr characters =
   case dropLastCharacter characters of
     Err e -> Err e
     Ok lastCharDropped -> Ok <| appendCharacters newStr lastCharDropped
+
+replaceSuruWith : String -> List KanjiOrKana -> Result String (List KanjiOrKana)
+replaceSuruWith newStr characters =
+  let
+    withoutSuru =
+      dropLastCharacter characters `Result.andThen` dropLastCharacter
+  in
+    withoutSuru
+      |> Result.map (flip (++) <| [ Kana newStr ])
+
+replaceKuruWith : String -> String -> List KanjiOrKana -> Result String (List KanjiOrKana)
+replaceKuruWith kanjiReading kanaEnding characters =
+  characters
+    |> List.reverse
+    |> List.drop 2 -- assuming 来 and る being 2 last elements
+    |> List.reverse
+    |> (flip (++) <| [ Kanji "来" kanjiReading, Kana kanaEnding ])
+    |> Ok
+
 
 dropLastCharacter : List KanjiOrKana -> Result String (List KanjiOrKana)
 dropLastCharacter characters =
