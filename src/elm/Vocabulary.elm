@@ -29,7 +29,7 @@ words =
   , w GodanVerbEndingWithBu [ Kanji "呼" "よ", Kana "ぶ" ]
   , w GodanVerbEndingWithRu [ Kanji "帰" "かえ", Kana "る" ]
   , w GodanVerbEndingWithRu [ Kanji "走" "はし", Kana "る" ]
-  , w GodanVerbEndingWithRu [ Kanji "止まる" "と", Kana "まる" ]
+  , w GodanVerbEndingWithRu [ Kanji "止" "と", Kana "まる" ]
   , w GodanVerbEndingWithU [ Kanji "買" "か", Kana "う" ]
   , w GodanVerbEndingWithU [ Kanji "吸" "す", Kana "う" ]
   , w GodanVerbEndingWithTsu [ Kanji "待" "ま", Kana "つ" ]
