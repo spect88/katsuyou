@@ -261,7 +261,7 @@ conjugate form word =
             Passive -> replaceSuruWith "される"
             Imperative -> replaceSuruWith "しろ"
             Volitional -> replaceSuruWith "しよう"
-            Conditional -> replaceSuruWith "しれば"
+            Conditional -> replaceSuruWith "すれば"
             Causative -> replaceSuruWith "させる"
             CausativePassive -> replaceSuruWith "させられる"
 
